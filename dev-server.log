@@ -1,0 +1,58 @@
+
+> rodmeditech@1.0.0 dev
+> next dev
+
+⚠ Port 3000 is in use by process 13432, using available port 3004 instead.
+▲ Next.js 16.1.6 (Turbopack)
+- Local:         http://localhost:3004
+- Network:       http://172.20.10.6:3004
+- Environments: .env
+
+✓ Starting...
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+✓ Ready in 2.2s
+Persisting failed: Unable to write SST file 00000035.sst
+
+Caused by:
+    The system cannot find the path specified. (os error 3)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)

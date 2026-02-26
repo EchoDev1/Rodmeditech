@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+:root {
+  --color-primary: #0a2540;
+  --color-primary-light: #163a5f;
+  --color-accent: #0ea5e9;
+  --color-accent-dark: #0284c7;
+  --color-surface: #f8fafc;
+  --color-surface-alt: #f1f5f9;
+  --color-text: #1e293b;
+  --color-text-muted: #64748b;
+  --color-border: #e2e8f0;
+  --color-success: #10b981;
+  --color-white: #ffffff;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  color: var(--color-text);
+  background: var(--color-white);
+}
+
+/* Custom gradient for hero sections */
+.hero-gradient {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 50%, var(--color-accent-dark) 100%);
+}
+
+/* Subtle card hover effect */
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(10, 37, 64, 0.12);
+}
+
+/* Pulse animation for CTA */
+@keyframes subtle-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.85; }
+}
+.pulse-subtle {
+  animation: subtle-pulse 3s ease-in-out infinite;
+}
+
+/* Section divider */
+.section-divider {
+  height: 4px;
+  width: 60px;
+  background: linear-gradient(90deg, var(--color-accent), var(--color-accent-dark));
+  border-radius: 2px;
+}

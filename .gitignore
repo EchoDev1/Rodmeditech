@@ -1,0 +1,23 @@
+node_modules
+# Keep environment variables out of version control
+.env
+.env.local
+.env.*.local
+
+# Next.js build output
+.next
+out
+
+# Local SQLite database (use Turso/remote DB in production)
+prisma/dev.db
+prisma/dev.db-journal
+
+# Uploaded files (should be stored in cloud storage in production)
+public/uploads
+
+# Prisma generated client
+/src/generated/prisma
+
+# OS files
+.DS_Store
+Thumbs.db

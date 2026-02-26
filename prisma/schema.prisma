@@ -1,0 +1,126 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+// Admin User Model
+model Admin {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// About Page Content
+model AboutPage {
+  id          String   @id @default(cuid())
+  mission     String
+  vision      String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Core Values
+model Value {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  icon        String
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Company Milestones
+model Milestone {
+  id          String   @id @default(cuid())
+  year        String
+  title       String
+  description String
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Founders/Leadership
+model Founder {
+  id          String   @id @default(cuid())
+  name        String
+  role        String
+  bio         String
+  photo       String?  // Path to uploaded image
+  specialties String   // JSON array of specialties
+  portfolio   String?
+  email       String
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Contact Information
+model ContactInfo {
+  id          String   @id @default(cuid())
+  type        String   // "address", "phone", "email", "hours"
+  title       String
+  content     String   // JSON array of lines
+  icon        String?
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// FAQs
+model FAQ {
+  id          String   @id @default(cuid())
+  question    String
+  answer      String
+  order       Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Services
+model Service {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  bullets     String   // JSON array of strings
+  icon        String   // Optional or generic icon name
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Equipment Categories
+model EquipmentCategory {
+  id          String   @id @default(cuid())
+  name        String
+  description String
+  order       Int      @default(0)
+  products    EquipmentProduct[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Equipment Products
+model EquipmentProduct {
+  id          String   @id @default(cuid())
+  name        String
+  description String
+  features    String   // JSON array of strings
+  categoryId  String
+  category    EquipmentCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
