@@ -272,16 +272,16 @@ export default async function AboutPage() {
               <div key={owner.id || owner.name} className="bg-white rounded-2xl overflow-hidden border border-slate-200 card-hover">
                 {/* Avatar or Photo */}
                 {owner.photo ? (
-                  <div className="h-48 relative bg-gray-100">
+                  <div className="w-full overflow-hidden bg-gray-100" style={{ aspectRatio: '4/3' }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={owner.photo}
                       alt={owner.name}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover object-top"
                     />
                   </div>
                 ) : (
-                  <div className="h-48 bg-gradient-to-br from-sky-600 to-blue-900 flex items-center justify-center">
+                  <div className="w-full bg-gradient-to-br from-sky-600 to-blue-900 flex items-center justify-center" style={{ aspectRatio: '4/3' }}>
                     <div className="w-28 h-28 rounded-full bg-white/20 backdrop-blur flex items-center justify-center border-4 border-white/30">
                       <span className="text-4xl font-bold text-white">
                         {owner.name.split(" ").map(n => n[0]).join("")}
