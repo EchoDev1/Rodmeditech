@@ -277,7 +277,8 @@ export default async function AboutPage() {
                     <img
                       src={owner.photo}
                       alt={owner.name}
-                      className="w-full h-full object-cover object-top"
+                      className="w-full h-full object-cover"
+                      style={{ objectPosition: 'center 15%' }}
                     />
                   </div>
                 ) : (
