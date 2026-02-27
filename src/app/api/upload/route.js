@@ -1,10 +1,9 @@
 import { NextResponse } from 'next/server';
 export const dynamic = 'force-dynamic';
 
-import { writeFile } from 'fs/promises';
-import { join } from 'path';
-import { mkdir } from 'fs/promises';
-
+// Instead of writing to disk (which is ephemeral on Vercel and ignored by git),
+// we convert the image to a Base64 data URL and return it directly.
+// The caller stores this data URL in the database, so it persists across deployments.
 export async function POST(request) {
   try {
     const formData = await request.formData();
@@ -17,29 +16,34 @@ export async function POST(request) {
       );
     }
 
+    // Validate file type
+    if (!file.type.startsWith('image/')) {
+      return NextResponse.json(
+        { error: 'Only image files are allowed' },
+        { status: 400 }
+      );
+    }
+
+    // Validate file size (max 2MB to stay safe with DB limits)
+    const MAX_SIZE = 2 * 1024 * 1024; // 2MB
+    if (file.size > MAX_SIZE) {
+      return NextResponse.json(
+        { error: 'Image must be smaller than 2MB' },
+        { status: 400 }
+      );
+    }
+
+    // Convert to Base64 data URL — stored directly in the database
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
+    const base64 = buffer.toString('base64');
+    const dataUrl = `data:${file.type};base64,${base64}`;
 
-    // Create uploads directory if it doesn't exist
-    const uploadsDir = join(process.cwd(), 'public', 'uploads', 'founders');
-    await mkdir(uploadsDir, { recursive: true });
-
-    // Generate unique filename
-    const timestamp = Date.now();
-    const filename = `${timestamp}-${file.name}`;
-    const filepath = join(uploadsDir, filename);
-
-    // Write file
-    await writeFile(filepath, buffer);
-
-    // Return public URL
-    const publicUrl = `/uploads/founders/${filename}`;
-
-    return NextResponse.json({ url: publicUrl });
+    return NextResponse.json({ url: dataUrl });
   } catch (error) {
-    console.error('Error uploading file:', error);
+    console.error('Error processing upload:', error);
     return NextResponse.json(
-      { error: 'Failed to upload file' },
+      { error: 'Failed to process upload' },
       { status: 500 }
     );
   }

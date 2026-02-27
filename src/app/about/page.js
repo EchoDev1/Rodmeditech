@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { prisma } from "@/lib/prisma";
 
 export const metadata = {
@@ -248,11 +247,11 @@ export default async function AboutPage() {
                 {/* Avatar or Photo */}
                 {owner.photo ? (
                   <div className="h-48 relative bg-gray-100">
-                    <Image
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
                       src={owner.photo}
                       alt={owner.name}
-                      fill
-                      className="object-cover"
+                      className="w-full h-full object-cover"
                     />
                   </div>
                 ) : (
