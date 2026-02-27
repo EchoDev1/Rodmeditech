@@ -55,28 +55,44 @@ async function getAboutData() {
 async function getFounders() {
   const defaultFounders = [
     {
+      id: 'default-1',
       name: "Dr. Rodney Okonkwo",
       role: "Co-Founder & CEO",
-      bio: "Dr. Rodney Okonkwo is a biomedical engineer with over 18 years of experience in healthcare technology. With a Ph.D. in Biomedical Engineering from Imperial College London, he has led the strategic direction of RodMeditech from a small consultancy to the region's premier medical equipment provider. His expertise spans medical imaging systems, hospital infrastructure planning, and regulatory compliance across multiple African markets.",
+      bio: "Dr. Rodney Okonkwo is a biomedical engineer with over 18 years of experience in healthcare technology. With a Ph.D. in Biomedical Engineering from Imperial College London, he has led the strategic direction of RodMeditech from a small consultancy to the region's premier medical equipment provider.",
       specialties: ["Medical Imaging", "Strategic Planning", "Regulatory Affairs", "Hospital Infrastructure"],
       portfolio: "https://linkedin.com/in/rodney-okonkwo",
       email: "rodney@rodmeditech.com",
-      photo: null
+      photo: null,
     },
     {
+      id: 'default-2',
       name: "Engr. Medinat Adeyemi",
       role: "Co-Founder & COO",
-      bio: "Engr. Medinat Adeyemi is a certified clinical engineer and operations specialist with 16 years of hands-on experience in large-scale medical equipment installation. She holds an M.Sc. in Clinical Engineering from the University of Lagos and has personally supervised the commissioning of equipment in over 300 hospitals. Her meticulous project management and deep technical knowledge ensure every installation meets international safety standards.",
+      bio: "Engr. Medinat Adeyemi is a certified clinical engineer and operations specialist with 16 years of hands-on experience in large-scale medical equipment installation. She holds an M.Sc. in Clinical Engineering from the University of Lagos.",
       specialties: ["Installation & Commissioning", "Project Management", "Clinical Engineering", "Staff Training"],
       portfolio: "https://linkedin.com/in/medinat-adeyemi",
       email: "medinat@rodmeditech.com",
-      photo: null
+      photo: null,
     },
   ];
 
   try {
+    // Crucially: do NOT select the photo blob here.
+    // The photo is served via /api/founders/[id]/photo as a binary image response.
+    // This keeps the RSC payload tiny regardless of photo file size.
     const founders = await prisma.founder.findMany({
-      orderBy: { order: 'asc' }
+      orderBy: { order: 'asc' },
+      select: {
+        id: true,
+        name: true,
+        role: true,
+        bio: true,
+        specialties: true,
+        portfolio: true,
+        email: true,
+        order: true,
+        photo: true, // only used to check if it's null or not — NOT passed to the page
+      },
     });
 
     if (founders.length === 0) {
@@ -84,16 +100,26 @@ async function getFounders() {
     }
 
     return founders.map(founder => ({
-      ...founder,
+      id: founder.id,
+      name: founder.name,
+      role: founder.role,
+      bio: founder.bio,
       specialties: typeof founder.specialties === 'string'
         ? JSON.parse(founder.specialties)
-        : founder.specialties || []
+        : founder.specialties || [],
+      portfolio: founder.portfolio,
+      email: founder.email,
+      order: founder.order,
+      // Only set photo URL if the founder actually has one in the DB.
+      // The proxy route /api/founders/[id]/photo serves the actual image bytes.
+      photo: founder.photo ? `/api/founders/${founder.id}/photo` : null,
     }));
   } catch (error) {
     console.error('Error fetching founders:', error);
     return defaultFounders;
   }
 }
+
 
 function ValueIcon({ type }) {
   const icons = {
